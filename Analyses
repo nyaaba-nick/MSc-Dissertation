@@ -77,7 +77,7 @@ nethypo <- pairwise(treat = T,
 
 netdeath<-as.data.frame.matrix(netdeath)
 netdeath<- 
-  mutate(netdeath, Pairwise= derivedFactor (
+  mutate(netdeath, Pairs= derivedFactor (
     "AMI vs QN" =(t1=="AMI"&t2=="QN"),
     "AME vs QN" =(t1=="AME"&t2=="QN"),
     "ATE vs QN" =(t1=="ATE"& t2=="QN"),
@@ -93,7 +93,7 @@ netdeath<-
 
 netcoma<-as.data.frame.matrix(netcoma)
 netcoma<- 
-  mutate(netcoma, Pairwise= derivedFactor (
+  mutate(netcoma, Pairs= derivedFactor (
     "AMI vs QN" =(t1=="AMI"&t2=="QN"),
     "AME vs QN" =(t1=="AME"&t2=="QN"),
     "ATE vs QN" =(t1=="ATE"& t2=="QN"),
@@ -108,7 +108,7 @@ netcoma<-
 
 netpara<-as.data.frame.matrix(netpara)
 netpara<- 
-  mutate(netpara, Pairwise= derivedFactor (
+  mutate(netpara, Pairs= derivedFactor (
     "AMI vs QN" =(t1=="AMI"&t2=="QN"),
     "AME vs QN" =(t1=="AME"&t2=="QN"),
     "ATE vs QN" =(t1=="ATE"& t2=="QN"),
@@ -124,7 +124,7 @@ netpara<-
 
 netneuro<-as.data.frame.matrix(netneuro)
 netneuro<- 
-  mutate(netneuro, Pairwise= derivedFactor (
+  mutate(netneuro, Pairs= derivedFactor (
     "AMI vs QN" =(t1=="AMI"&t2=="QN"),
     "AME vs QN" =(t1=="AME"&t2=="QN"),
     "ATE vs QN" =(t1=="ATE"& t2=="QN"),
@@ -140,7 +140,7 @@ netneuro<-
 
 nethypo<-as.data.frame.matrix(nethypo)
 nethypo<- 
-  mutate(nethypo, Pairwise= derivedFactor (
+  mutate(nethypo, Pairs= derivedFactor (
     "AMI vs QN" =(t1=="AMI"&t2=="QN"),
     "AME vs QN" =(t1=="AME"&t2=="QN"),
     "ATE vs QN" =(t1=="ATE"& t2=="QN"),
@@ -165,7 +165,7 @@ madeath<- metagen(TE,
                seTE,
                studlab,
                data = netdeath,
-               byvar = netdeath$Pairwise, 
+               byvar = netdeath$Pairs, 
                sm = "RR", 
                comb.fixed = FALSE,
                prediction = T,
@@ -175,14 +175,47 @@ madeath<- metagen(TE,
 # display model output
 summary(madeath)
 
+#forest plot
+
+forest(madeath, 
+       xlim = c(0.01, 50), 
+       smlab = "Direct Comparison of Mortality Rates",
+       label.left = "reduces mortality",
+       label.right= "increase mortality",
+       test.subgroup.random=F,
+       test.effect.subgroup.random=F,
+       small.values = "good",
+       rightcols = c("effect","ci"),
+       leftcols = "studlab",
+       just.smlab = "left",
+       col.square.lines = "blue",
+       fontsize =8,
+       plotwidth = "10cm",
+       colgap.left="8mm",
+       spacing= 0.75,
+       overall = F,
+       overall.hetstat = F,
+       prediction = F,
+       studlab = T,
+       study.results = T,
+       pooled.totals = T,
+       hetstat = F,
+       fs.smlab = 10, ff.smlab = "bold",
+       fs.study.labels= 7, ff.study.labels = "bold",
+       fs.axis = 8,
+       fs.xlab = 10, ff.xlab = "bold.italic",
+       fs.heading= 10, ff.heading = "bold",
+       fs.random = 10, ff.random = "bold",
+       text.random.w=("")
+)
+
 
 ##  Coma Recovery Time
-
 macrt<- metagen(TE,
                seTE,
                studlab,
                data = netcoma,
-               byvar = netcoma$Pairwise, 
+               byvar = netcoma$Pairs, 
                sm = "MD", 
                comb.fixed = FALSE,
                prediction = T,
@@ -192,6 +225,43 @@ macrt<- metagen(TE,
 # display model output
 summary(macrt)
 
+# forest plot
+
+forest(macrt, 
+       xlim = c(-100, 150), 
+       smlab = "Direct Comparison of Coma Recovery Time ",
+       label.left = "reduces recovery time",
+       label.right= "increases recovery time",
+       
+       
+       test.subgroup.random=F,
+       test.effect.subgroup.random=F,
+       small.values = "good",
+       rightcols = c("effect","ci"),
+       leftcols = "studlab",
+       just.smlab = "left",
+       col.square.lines = "blue",
+       fontsize =8,
+       plotwidth = "10cm",
+       colgap.left="8mm",
+       spacing= 0.75,
+       overall = F,
+       overall.hetstat = F,
+       prediction = F,
+       studlab = T,
+       study.results = T,
+       pooled.totals = T,
+       hetstat = F,     
+       fs.smlab = 10, ff.smlab = "bold",
+       fs.study.labels= 7, ff.study.labels = "bold",
+       fs.axis = 8,
+       fs.xlab = 10, ff.xlab = "bold.italic",
+       fs.heading= 10, ff.heading = "bold",
+       fs.random = 10, ff.random = "bold",
+       text.random.w=("")
+)
+
+
 
 ##  Parasite clearance time
 
@@ -200,7 +270,7 @@ mapct<- metagen(TE,
                seTE,
                studlab,
                data = netpara,
-               byvar = netpara$Pairwise, 
+               byvar = netpara$Pairs, 
                sm = "MD", 
                comb.fixed = FALSE,
                prediction = T,
@@ -210,6 +280,39 @@ mapct<- metagen(TE,
 # display model output
 summary(mapct)
 
+# forest plot
+forest(mapct, 
+       xlim = c(-80, 20), 
+       smlab = "Direct Comparison of Parasite Clearance Time ",
+       label.left = "reduces clearance time",
+       label.right= "increases clearance time",
+       test.subgroup.random=F,
+       test.effect.subgroup.random=F,
+       small.values = "good",
+       rightcols = c("effect","ci"),
+       leftcols = "studlab",
+       just.smlab = "left",
+       col.square.lines = "blue",
+       fontsize =8,
+       plotwidth = "10cm",
+       colgap.left="8mm",
+       spacing= 0.75,
+       overall = F,
+       overall.hetstat = F,
+       prediction = F,
+       studlab = T,
+       study.results = T,
+       pooled.totals = T,
+       hetstat = F,  
+       fs.smlab = 10, ff.smlab = "bold",
+       fs.study.labels= 7, ff.study.labels = "bold",
+       fs.axis = 8,
+       fs.xlab = 10, ff.xlab = "bold.italic",
+       fs.heading= 10, ff.heading = "bold",
+       fs.random = 10, ff.random = "bold",
+       text.random.w=("")
+)
+
 
 ##  Neurological Sequela Events
 
@@ -218,7 +321,7 @@ maneuro<- metagen(TE,
                seTE,
                studlab,
                data = netneuro,
-               byvar = netneuro$Pairwise, 
+               byvar = netneuro$Pairs, 
                sm = "RR", 
                comb.fixed = FALSE,
                prediction = T,
@@ -227,6 +330,40 @@ maneuro<- metagen(TE,
 
 # display model output
 summary(maneuro)
+
+# forest plot
+forest(maneuro, 
+       xlim = c(0.01, 70), 
+       smlab = "Direct Comparison of Neurological Sequela Events ",
+       label.left = "reduces events",
+       label.right= "increases events",
+       test.subgroup.random=F,
+       test.effect.subgroup.random=F,
+       small.values = "good",
+       rightcols = c("effect","ci"),
+       leftcols = "studlab",
+       just.smlab = "left",
+       col.square.lines = "blue",
+       fontsize =8,
+       plotwidth = "10cm",
+       colgap.left="8mm",
+       spacing= 0.75,
+       overall = F,
+       overall.hetstat = F,
+       prediction = F,
+       studlab = T,
+       study.results = T,
+       pooled.totals = T,
+       hetstat = F,       
+       fs.smlab = 10, ff.smlab = "bold",
+       fs.study.labels= 7, ff.study.labels = "bold",
+       fs.axis = 8,
+       fs.xlab = 10, ff.xlab = "bold.italic",
+       fs.heading= 10, ff.heading = "bold",
+       fs.random = 10, ff.random = "bold",
+       text.random.w=("")
+)
+
 
 
 
