@@ -13,7 +13,7 @@ library(hasseDiagram)
 library(mosaic)
 
       # Set working directory
-setwd("Z:/Docs/i/o/Project X/m/Dissertation/Analyses")
+setwd("Z:Dissertation/Analyses")
 
       # import data
 data<-read.csv("main analyses dataset.csv")
@@ -175,40 +175,53 @@ madeath<- metagen(TE,
 # display model output
 summary(madeath)
 
-#forest plot
+# forest plot
+tiff("Fig4.tiff",
+     width = 10000, units="px",height = 10500, res =600, compression = "lzw")
 
 forest(madeath, 
        xlim = c(0.01, 50), 
-       smlab = "Direct Comparison of Mortality Rates",
+       smlab = "Mortality Rates",
        label.left = "reduces mortality",
-       label.right= "increase mortality",
-       test.subgroup.random=F,
-       test.effect.subgroup.random=F,
+       label.right= "increase mortality", 
+       test.effect.subgroup=F,
+       test.subgroup=F,
        small.values = "good",
        rightcols = c("effect","ci"),
        leftcols = "studlab",
        just.smlab = "left",
        col.square.lines = "blue",
-       fontsize =8,
-       plotwidth = "10cm",
+       col.square="blue",
+       fontsize =18,
+       plotwidth = "20cm",
        colgap.left="8mm",
-       spacing= 0.75,
+       spacing= 1.3,
        overall = F,
-       overall.hetstat = F,
+       overall.hetstat = F,   
        prediction = F,
        studlab = T,
        study.results = T,
        pooled.totals = T,
-       hetstat = F,
-       fs.smlab = 10, ff.smlab = "bold",
-       fs.study.labels= 7, ff.study.labels = "bold",
-       fs.axis = 8,
-       fs.xlab = 10, ff.xlab = "bold.italic",
-       fs.heading= 10, ff.heading = "bold",
-       fs.random = 10, ff.random = "bold",
-       text.random.w=("")
+       hetstat = T,
+       print.I2 = T,
+       print.I2.ci = T,
+       print.pval.Q = F,
+       print.tau2 = F,
+       comb.fixed = F,
+       comb.random = T,
+       type.subgroup = "square",
+       col.diamond="red",
+       fs.smlab = 24, ff.smlab = "bold",
+       fs.study.labels= 14, ff.study.labels = "bold",
+       fs.axis = 14,
+       fs.hetstat = 18, ff.hetstat = "bold",
+       fs.xlab = 18, ff.xlab = "bold.italic",
+       fs.heading= 18, ff.heading = "bold",
+       text.random.w="Pooled Effect",
+       text.fixed.w = ""
 )
 
+dev.off()
 
 ##  Coma Recovery Time
 macrt<- metagen(TE,
@@ -227,39 +240,51 @@ summary(macrt)
 
 # forest plot
 
+tiff("Fig5.tiff",
+     width = 10000, units="px",height = 10000, res =600, compression = "lzw")
+
 forest(macrt, 
        xlim = c(-100, 150), 
-       smlab = "Direct Comparison of Coma Recovery Time ",
+       smlab = "Coma Recovery Time ",
        label.left = "reduces recovery time",
        label.right= "increases recovery time",
-       
-       
-       test.subgroup.random=F,
-       test.effect.subgroup.random=F,
+       test.effect.subgroup=F,
+       test.subgroup=F,
        small.values = "good",
        rightcols = c("effect","ci"),
        leftcols = "studlab",
        just.smlab = "left",
        col.square.lines = "blue",
-       fontsize =8,
-       plotwidth = "10cm",
+       col.square="blue",
+       fontsize =18,
+       plotwidth = "25cm",
        colgap.left="8mm",
-       spacing= 0.75,
+       spacing= 1.5,
        overall = F,
        overall.hetstat = F,
        prediction = F,
        studlab = T,
        study.results = T,
        pooled.totals = T,
-       hetstat = F,     
-       fs.smlab = 10, ff.smlab = "bold",
-       fs.study.labels= 7, ff.study.labels = "bold",
-       fs.axis = 8,
-       fs.xlab = 10, ff.xlab = "bold.italic",
-       fs.heading= 10, ff.heading = "bold",
-       fs.random = 10, ff.random = "bold",
-       text.random.w=("")
+       hetstat = T,
+       print.I2 = T,
+       print.I2.ci = T,
+       print.pval.Q = F,
+       print.tau2 = F,
+       comb.fixed = F,
+       comb.random = T,
+       type.subgroup = "square",
+       col.diamond="red",   
+       fs.smlab = 24, ff.smlab = "bold",
+       fs.study.labels= 14, ff.study.labels = "bold",
+       fs.axis = 14,
+       fs.hetstat = 18, ff.hetstat = "bold",
+       fs.xlab = 18, ff.xlab = "bold.italic",
+       fs.heading= 18, ff.heading = "bold",
+       text.random.w="Pooled Effect",
+       text.fixed.w = ""
 )
+dev.off()
 
 
 
@@ -281,37 +306,52 @@ mapct<- metagen(TE,
 summary(mapct)
 
 # forest plot
+
+tiff("Fig6.tiff",
+     width = 10000, units="px",height = 12000, res =600, compression = "lzw")
+
 forest(mapct, 
        xlim = c(-80, 20), 
-       smlab = "Direct Comparison of Parasite Clearance Time ",
-       label.left = "reduces clearance time",
-       label.right= "increases clearance time",
-       test.subgroup.random=F,
-       test.effect.subgroup.random=F,
+       smlab = "Parasite Clearance Time",
+       label.right= "slower clearance time",
+       label.left = "faster clearance  time",
+       test.effect.subgroup=F,
+       test.subgroup=F,
        small.values = "good",
        rightcols = c("effect","ci"),
        leftcols = "studlab",
        just.smlab = "left",
        col.square.lines = "blue",
-       fontsize =8,
-       plotwidth = "10cm",
+       col.square="blue",
+       fontsize =18,
+       plotwidth = "25cm",
        colgap.left="8mm",
-       spacing= 0.75,
+       spacing= 1.5,
        overall = F,
-       overall.hetstat = F,
+       overall.hetstat = F,  
        prediction = F,
        studlab = T,
        study.results = T,
        pooled.totals = T,
-       hetstat = F,  
-       fs.smlab = 10, ff.smlab = "bold",
-       fs.study.labels= 7, ff.study.labels = "bold",
-       fs.axis = 8,
-       fs.xlab = 10, ff.xlab = "bold.italic",
-       fs.heading= 10, ff.heading = "bold",
-       fs.random = 10, ff.random = "bold",
-       text.random.w=("")
+       hetstat = T,
+       print.I2 = T,
+       print.I2.ci = T,
+       print.pval.Q = F,
+       print.tau2 = F,
+       comb.fixed = F,
+       comb.random = T,
+       type.subgroup = "square",
+       col.diamond="red",
+       fs.smlab = 24, ff.smlab = "bold",
+       fs.study.labels= 14, ff.study.labels = "bold",
+       fs.axis = 14,
+       fs.hetstat = 18, ff.hetstat = "bold",
+       fs.xlab = 18, ff.xlab = "bold.italic",
+       fs.heading= 18, ff.heading = "bold",
+       text.random.w="Pooled Effect",
+       text.fixed.w = ""
 )
+dev.off()
 
 
 ##  Neurological Sequela Events
@@ -332,37 +372,51 @@ maneuro<- metagen(TE,
 summary(maneuro)
 
 # forest plot
+tiff("Fig7.tiff",
+     width = 10000, units="px",height = 10000, res =600, compression = "lzw")
+
 forest(maneuro, 
        xlim = c(0.01, 70), 
-       smlab = "Direct Comparison of Neurological Sequela Events ",
+       smlab = "Neurological Sequela Events ",
        label.left = "reduces events",
        label.right= "increases events",
-       test.subgroup.random=F,
-       test.effect.subgroup.random=F,
+       test.effect.subgroup=F,
+       test.subgroup=F,
        small.values = "good",
        rightcols = c("effect","ci"),
        leftcols = "studlab",
        just.smlab = "left",
        col.square.lines = "blue",
-       fontsize =8,
-       plotwidth = "10cm",
+       col.square="blue",
+       fontsize =20,
+       plotwidth = "25cm",
        colgap.left="8mm",
-       spacing= 0.75,
+       spacing= 1.5,
        overall = F,
        overall.hetstat = F,
        prediction = F,
        studlab = T,
        study.results = T,
        pooled.totals = T,
-       hetstat = F,       
-       fs.smlab = 10, ff.smlab = "bold",
-       fs.study.labels= 7, ff.study.labels = "bold",
-       fs.axis = 8,
-       fs.xlab = 10, ff.xlab = "bold.italic",
-       fs.heading= 10, ff.heading = "bold",
-       fs.random = 10, ff.random = "bold",
-       text.random.w=("")
+       hetstat = T,
+       print.I2 = T,
+       print.I2.ci = T,
+       print.pval.Q = F,
+       print.tau2 = F,
+       comb.fixed = F,
+       comb.random = T,
+       type.subgroup = "square",
+       col.diamond="red", 
+       fs.smlab = 26, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
+       fs.axis = 14,
+       fs.hetstat = 18, ff.hetstat = "bold",
+       fs.xlab = 18, ff.xlab = "bold.italic",
+       fs.heading= 18, ff.heading = "bold",
+       text.random.w="Pooled Effect",
+       text.fixed.w = ""
 )
+dev.off()
 
 
 
@@ -388,7 +442,7 @@ nmac <- netmeta(TE,
 # display model output
  summary(nmac)
  
-        #   Figure 4. Constructing a Netgraph
+        #   Figure 8. Constructing a Netgraph
  #  subset data       
  child<- as.data.frame.matrix(netdeath)
  child<- subset(netdeath,age_group=="c")
@@ -409,18 +463,23 @@ nmac <- netmeta(TE,
  nodesize <- c(nATE,nAME,nAMI,nASU,nQN)/sum(c(nQN,nAME,nASU,nATE,nAMI))*100
  
  #  netgraph
+ 
+ tiff("Fig8.tiff",
+     width = 7000, height = 5500, res = 600, compression = "lzw")
  netgraph(nmac,
           plastic = FALSE,
           labels = c("Arteether; ATE","Artemether; AME","Artemisinin; AMI","Artesunate; ASU","Quinine; QN"),
           points = TRUE,
-          cex.points = nodesize,
+          cex.points = nodesizec,
           offset = 0.14,
-          col.points = "blue",
+          col.points= "blue",
           col = "black",
           number.of.studies = T,
           scale = 0.95,
           col.number.of.studies = "grey",
           thickness = "number.of.studies")
+ 
+dev.off()
  
 
   #    Produce League table in CSV format
@@ -464,7 +523,7 @@ nmaa <- netmeta(TE,
 # display model output
 summary(nmaa)
 
-# Figure 5. Constructing a Netgraph
+# Figure 9. Constructing a Netgraph
 # subset data
 adult<- as.data.frame.matrix(netdeath)
 adult<- subset(netdeath,age_group=="a")
@@ -483,19 +542,25 @@ nAME <- nAME + sum(subset(adult, t1=="AME")$n1)
 
 nodesize <- c(nAME,nAMI,nASU,nQN)/sum(c(nQN,nAME,nASU,nAMI))*70
 
-#netgraph
+# netgraph
+
+tiff("Fig9.tiff",
+     width = 7000, height = 5500, res = 600, compression = "lzw")
 netgraph(nmaa,
          plastic = FALSE,
          labels = c("Artemether; AME","Artemisinin; AMI","Artesunate; ASU","Quinine; QN"),
          points = TRUE,
          cex.points = nodesize,
+         col.points= "blue",
          offset = 0.09,
-         col.points = "blue",
          col = "black",
          number.of.studies = T,
          col.number.of.studies = "grey",
          thickness = "number.of.studies",
          scale = 0.95)
+
+
+dev.off()
 
 
 # Produce League table in CSV format
@@ -624,20 +689,28 @@ decomp.design(nma2a)
 # Detailed output of direct evidence vs indirect evidence
 print(netsplit(nma2a), digits = 2, ci = TRUE, test = T)
 
-# Figure 6. Use a forest plot to graphically contrast the results using the
+# Figure 10. Use a forest plot to graphically contrast the results using the
 # direct evidence vs indirect evidence:
 nsc<- netsplit(nma3c)
+tiff("Fig10.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
 forest(nsc,
        prediction = F,
        overall = F,
        colgap.left="18mm",
+       fontsize=14,
        leftcols = c("studlab","k"))
 
-# Appendix 6. netheat plot
+dev.off()
+
+# Figure 12. Netheat plot
+
+tiff("Fig12.tiff",
+     width = 9000, height = 8500, res = 600, compression = "lzw")
 netheat(nma3c,
         showall = T,
-        tau.preset=T)
-
+        random = T)
+dev.off()
 
       ##  Adults
       
@@ -670,20 +743,32 @@ decomp.design(nma3a)
 # Detailed output of direct evidence vs indirect evidence
 print(netsplit(nma3a), digits = 2, ci = TRUE, test = T)
 
-# Figure 7. Use a forest plot to graphically contrast the results using the
+# Figure 11. Use a forest plot to graphically contrast the results using the
 # direct evidence vs indirect evidence:
 nsa<- netsplit(nma3a)
+
+tiff("Fig11.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+     
 forest(nsa,
        prediction = F,
        overall = F,
+       fontsize=14,
        colgap.left="18mm",
        leftcols = c("studlab","k"))
-       
-# Appendix 7. heatplot
+
+dev.off()
+
+# Figure 13. heatplot
+
+tiff("Fig13.tiff",
+     width = 9000, height =8500 , res = 600, compression = "lzw")
+
 netheat(nma3a,
         showall = T,
-        tau.preset=T)
+        random = T)
 
+dev.off ()
 
 
           ##  5.6.4 Neurological Sequela Events
@@ -779,7 +864,11 @@ nma5 <- netmeta(TE,
 # View output of model
 summary(nma5)
 
-# Figure 8. Network Results of hypoglycaemia events
+# Figure 14. Network Results of hypoglycaemia events
+
+tiff("Fig14.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+
 forest(nma5,
        xlim = c(0.04,4),
        smlab = "Hypoglycaemia Events",
@@ -787,8 +876,8 @@ forest(nma5,
        reference.group = "Quinine",
        just.smlab = "left",
        col.square.lines = "blue",
-       fontsize =10,
-       plotwidth = "8cm",
+       fontsize =15,
+       plotwidth = "12cm",
        colgap.left="4mm",
        spacing= 2,
        print.I2= F,
@@ -796,13 +885,14 @@ forest(nma5,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 11, ff.smlab = "bold",
-       fs.study.labels= 10, ff.study.labels = "bold",
+       fs.smlab = 20, ff.smlab = "bold",
+       fs.study.labels= 15, ff.study.labels = "bold",
        fs.axis = 8,
-       fs.addline = 8, ff.addline = "italic",
+       fs.addline = 12, ff.addline = "italic",
        text.addline1=" Variability: I^2=0%, p=0.45"
 )
 
+dev.off()
 
 # Inconsistencies and heterogeneity
 
@@ -840,8 +930,10 @@ maecg<- metagen(TE,
                method.tau= "REML",
                method.tau.ci = "QP")
 
-# Figure 9. Direct Meta-analysis Construct forest plot
+# Figure 15. Direct Meta-analysis Construct forest plot
 
+tiff("Fig15.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
 forest(maecg, 
        xlim = c(0.01, 70), 
        test.subgroup.random=F,
@@ -851,10 +943,15 @@ forest(maecg,
        small.values = "good",
        rightcols = c("effect","ci"),
        leftcols = c("studlab","event1","n1","event2","n2"),
-       leftlabs = c("Study","*AME","out of","*QN", "out of"),
+       lab.e = "Artemether",
+       lab.c = "Quinine",
+       lab.e.attach.to.col = "event1",
+       lab.c.attach.to.col = "event2",
        just.smlab = "left",
+       leftlabs = c("Study","events","out of","events", "out of"),
+       title= "ECG",
        col.square.lines = "blue",
-       fontsize =12,
+       fontsize =14,
        plotwidth = "8cm",
        colgap.left="4mm",
        spacing= 3,
@@ -868,29 +965,29 @@ forest(maecg,
        print.tau2 = F,
        label.left = "favours artemether",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 11, ff.study.labels = "bold",
-       fs.axis = 9,
-       fs.addline = 7, ff.addline = "bold.italic"
+       fs.smlab = 16, ff.smlab = "bold",
+       fs.study.labels= 14, ff.study.labels = "bold",
+       fs.axis = 9
 )
+
+dev.off()
 
 
 
           		##  5.7. Ranking and Forest plots 
 
 		
-			##	Figure 11. Forest Plots of NMA results showing ranking of treatments with P-scores among children
 
 ##	Mortality
 
 #	Rank
 netrank(nmac, small.values = "good")
 
-#	Figure 11 forest plot with P-Scores and ranking
+#	forest plot with P-Scores and ranking
 
 forest(nmac,
        xlim = c(0.04,4),
-       smlab = "Mortality",
+       smlab = "A) Mortality",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -898,21 +995,23 @@ forest(nmac,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize =12,
-       plotwidth = "8cm",
+       fontsize =16,
+       plotwidth = "9cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 13, ff.study.labels = "bold",
+       fs.smlab = 20, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
        fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1=" *I^2=0%, p=0.93"
+  
 )
+
+# layout
+fdc<- grid.grab()
 
  ##	Coma Recovery Time
 
@@ -922,7 +1021,7 @@ netrank(nma2c, small.values = "good")
 #	forest plot with P-Scores and ranking
 forest(nma2c,
        xlim = c(-86,140),
-       smlab = "Coma Recovery Time",
+       smlab = "B) Coma Recovery Time",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -930,21 +1029,23 @@ forest(nma2c,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize =12,
-       plotwidth = "8cm",
+       fontsize =16,
+       plotwidth = "9cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 12, ff.study.labels = "bold",
+       fs.smlab = 20, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
        fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1=" *I^2=61.7%, p=0.005"
+     
 )
+
+# layout
+fcc<- grid.grab()
 
 
  ##	Parasite clearance time
@@ -955,7 +1056,7 @@ netrank(nma3c, small.values = "good")
 #	forest plot with P-Scores and ranking
 forest(nma3c,
        xlim = c(-50,13),
-       smlab = "Parasite Clearance Time",
+       smlab = " C) Parasite Clearance Time",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -963,32 +1064,34 @@ forest(nma3c,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize =12,
-       plotwidth = "8cm",
+       fontsize =16,
+       plotwidth = "9.5cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 12, ff.study.labels = "bold",
+       fs.smlab = 20, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
        fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1=" *I^2=77.6%, p<0.0001"
+      
 )
+# layout
+fpc<- grid.grab()
 
 
    ##	Neurological Sequela Events
 
-#	Rank
+# Rank
 netrank(nma4c, small.values = "good")
 
-#	forest plot with P-Scores and ranking
+#forest plot with P-Scores and ranking
+
 forest(nma4c,
        xlim = c(0.05,80),
-       smlab = "Neurological Sequela Events",
+       smlab = "D) Neurological Sequela Events",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -996,25 +1099,34 @@ forest(nma4c,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize =12,
-       plotwidth = "8cm",
+       fontsize =16,
+       plotwidth = "10cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 12, ff.study.labels = "bold",
-       fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1=" *I^2=24.4%, p=0.23"
+       fs.smlab = 19, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
+       fs.axis = 9
+     
 )
 
+# layout
+fnc<- grid.grab()
 
 
-     		     ##	Figure 13.Forest Plots of NMA results showing ranking of treatments with P-scores among adults
+  ##	Figure 17.Forest Plots of NMA results showing ranking of treatments with P-scores among children
+  
+tiff("Fig17.tiff",
+     width = 10000, height = 8500, res = 600, compression = "lzw")
+
+grid.arrange(fdc, fcc, fpc, fnc, ncol = 2, nrow = 2)
+
+dev.off()
+
 					
 ##	Mortality	
 
@@ -1022,9 +1134,11 @@ forest(nma4c,
 netrank(nmaa, small.values = "good")
 
 #	forest plot with P-Scores and ranking
+
+#forest plot with P-Scores and ranking
 forest(nmaa,
        xlim = c(0.25,4),
-       smlab = "Mortality",
+       smlab = "A) Mortality",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -1032,22 +1146,23 @@ forest(nmaa,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize =12,
-       plotwidth = "8cm",
+       fontsize =16,
+       plotwidth = "9cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 12, ff.study.labels = "bold",
+       fs.smlab = 20, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
        fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1="*I^2=23.1%, p=0.24"
+    
 )
 
+#layout
+fda<- grid.grab()
 
      
   ##	Coma Recovery Time
@@ -1059,7 +1174,7 @@ netrank(nma2a, small.values = "good")
 #	forest plot with P-Scores and ranking
 forest(nma2a,
        xlim = c(-40,40),
-       smlab = "Coma Recovery Time",
+       smlab = "B) Coma Recovery Time",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -1067,21 +1182,23 @@ forest(nma2a,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize =12,
-       plotwidth = "8cm",
+       fontsize =16,
+       plotwidth = "9cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 12, ff.study.labels = "bold",
+       fs.smlab = 20, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
        fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1=" *I^2=0%, p=0.54"
+       
 )
+
+#layout
+fca<- grid.grab()
 
 
 
@@ -1095,7 +1212,7 @@ netrank(nma3a, small.values = "good")
 #	forest plot with P-Scores and ranking
 forest(nma3a,
        xlim = c(-50,10),
-       smlab = "Parasite Clearance Time",
+       smlab = " C) Parasite Clearance Time",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -1103,22 +1220,31 @@ forest(nma3a,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize=12,
-       plotwidth = "8cm",
+       fontsize=16,
+       plotwidth = "9.5cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 12, ff.study.labels = "bold",
+       fs.smlab = 20, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
        fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1=" *I^2=89.7%, p<0.0001"
+   
 )
 
+#layout
+fpa<- grid.grab()
+
+  ##	Figure 19.Forest Plots of NMA results showing ranking of treatments with P-scores among adults
+  
+tiff("Fig19.tiff",
+     width = 10000, height = 8500, res = 600, compression = "lzw")
+grid.arrange(fda, fca, fpa, ncol = 2, nrow = 2)
+
+dev.off()
 
 
 ## Hypoglycaemia events for children and adults combine
@@ -1154,7 +1280,13 @@ netsetc<-as.logical(netsetc)
 netc<-matrix(netsetc,5,5)
 
 #	Construct Hasse Diagram
-hasse(netc, c("Artemisinin", "Artemether", "Arteether", "Artesunate","Quinine"))
+
+tiff("Fig16.tiff",
+     width = 6000, height = 6000, res = 600, compression = "lzw")
+
+hasse(netc, c("Artemisinin;AMI", "Artemether;AME", "Arteether:ATE", "Artesunate;ASU","Quinine;QN"))
+
+dev.off()
 
 
 
@@ -1182,7 +1314,13 @@ netseta<-as.logical(netseta)
 neta<-matrix(netseta,4,4)
 
 #	Construct Hasse Diagram
-hasse(neta, c("Artemisinin", "Artemether", "Artesunate","Quinine"))
+tiff("Fig18.tiff",
+     width = 6000, height = 6000, res = 600, compression = "lzw")
+
+hasse(neta, c("Artemisinin;AMI", "Artemether;AME", "Artesunate;ASU","Quinine;QN"))
+
+
+dev.off()
 
 
 
@@ -1248,7 +1386,12 @@ nATE<- sum(subset(netdeath, t1=="ATE")$n1)
 
 nodesize <- c(nATE,nAME,nAMI,nASU,nQN)/sum(c(nQN,nAME,nASU,nATE,nAMI))*100
 
-# Figure 14. Network Graph of direct evidence for Mortality for Lumped Population
+# Figure 20. Network Graph of direct evidence for Mortality for Lumped Population
+
+tiff("Fig20.tiff",
+     width = 8000, height = 5500, res = 600, compression = "lzw")
+
+#netgraph
 netgraph(nma1,
          plastic = FALSE,
          seq = c("Artemisinin","Artemether","Artesunate","Arteether","Quinine"),
@@ -1262,6 +1405,9 @@ netgraph(nma1,
          thickness = "number.of.studies",
          cex.points = nodesize,
          labels = c("Arteether; ATE" ,"Artemether; AME","Artemisinin; AMI","Artesunate; ASU","Quinine; QN"))
+
+
+dev.off()
 
 
 
@@ -1339,20 +1485,33 @@ decomp.design(nma3)
 # Detailed output of direct evidence vs indirect evidence
 print(netsplit(nma3), digits = 2, ci = TRUE, test = T)
 
-# Figure 15. Forest Plot comparing Direct and Indirect Evidence among Lumped Population for parasite clearance time
+# Figure 21. Forest Plot comparing Direct and Indirect Evidence among Lumped Population for parasite clearance time
 #  Use a forest plot to graphically contrast the results using the
 #  direct evidence vs indirect evidence:
 ns<- netsplit(nma3)
+
+tiff("Fig21.tiff",
+     width = 6000, height = 4000, res = 600, compression = "lzw")
 forest(ns,
        prediction = F,
        overall = F,
        colgap.left="18mm",
+       plotwidth="9cm",
+       spacing= 1,
+       fontsize=14,
        leftcols = c("studlab","k"))
 
+dev.off()
+
 # heatplot
+tiff("Fig22.tiff",
+     width = 9000, height = 8500, res = 600, compression = "lzw")
+
 netheat(nma3,
         showall = T,
-        tau.preset=T)
+        random = T)
+
+dev.off()
 
 
 
@@ -1390,13 +1549,12 @@ forest(netsplit(nma4a))
 
 ## Ranking and Forest plot
 
-# Figure 17. Forest Plots of NMA results showing ranking of treatments with P-scores among lumped population
 
 # Mortality
 
 forest(nma1,
        xlim = c(0.3,2),
-       smlab = "Mortality",
+       smlab = "A) Mortality",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -1404,28 +1562,29 @@ forest(nma1,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize =12,
-       plotwidth = "8cm",
+       fontsize =16,
+       plotwidth = "9cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 12, ff.study.labels = "bold",
+       fs.smlab = 20, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
        fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1="*I^2=0%, p=0.67"
+ 
 )
+# layout
+fd<- grid.grab()
 
 
 # Coma Recovery Time
 
 forest(nma2,
        xlim = c(-40,30),
-       smlab = "Coma Recovery Time",
+       smlab = "B) Coma Recovery Time",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -1433,26 +1592,27 @@ forest(nma2,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize =12,
-       plotwidth = "8cm",
+       fontsize =16,
+       plotwidth = "9cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 12, ff.study.labels = "bold",
-       fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1=" *I^2=53.0%, p=0.006"
+       fs.smlab = 20, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
+       fs.axis = 9
+     
 )
+ # layout
+fc<- grid.grab()
 
 # Parasite Clearence time
 forest(nma3,
        xlim = c(-40,20),
-       smlab = "Parasite Clearance Time",
+       smlab = " C) Parasite Clearance Time",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -1460,27 +1620,29 @@ forest(nma3,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize =12,
-       plotwidth = "8cm",
+       fontsize =16,
+       plotwidth = "9.5cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 12, ff.study.labels = "bold",
+       fs.smlab = 20, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
        fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1=" *I^2=87.7%, p<0.001"
+     
 )
+
+#layout
+fp<- grid.grab()
 
 
 # Neurological sequela events
 forest(nma4,
        xlim = c(0.05,80),
-       smlab = "Neurological Sequela Events",
+       smlab = "D) Neurological Sequela Events",
        small.values = "good",
        reference.group = "Quinine",
        just.smlab = "left",
@@ -1488,24 +1650,34 @@ forest(nma4,
        sortvar = -Pscore,
        col.square= "blue",
        col.square.lines = "blue",
-       fontsize =12,
-       plotwidth = "8cm",
+       fontsize =16,
+       plotwidth = "9.5cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
-       fs.smlab = 13, ff.smlab = "bold",
-       fs.study.labels= 12, ff.study.labels = "bold",
+       fs.smlab = 18, ff.smlab = "bold",
+       fs.study.labels= 16, ff.study.labels = "bold",
        fs.axis = 9,
-       fs.addline = 9, ff.addline = "italic",
-       text.addline1=" *I^2=11.7%, p=0.33"
+      
 )
 
+#layout
+fn<- grid.grab()
 
-# Figure 16.  Ranking of treatments in the lumped population using a Hasse diagram based on mortality, coma recovery time and parasite clearance time.
+
+# Figure 24. Forest Plots of NMA results showing ranking of treatments with P-scores among lumped population
+
+tiff("Fig24.tiff",
+     width = 10000, height = 8500, res = 600, compression = "lzw")
+grid.arrange(fd, fc, fp, fn, ncol = 2, nrow = 2)
+
+dev.off()
+
+# Ranking of treatments in the lumped population using a Hasse diagram based on mortality, coma recovery time and parasite clearance time.
 
 # P-scores 
 pscore.death  <-c(0.3145, 0.5060, 0.7045, 0.8058, 0.1693)
@@ -1532,7 +1704,13 @@ netset<-as.logical(netset)
 net<-matrix(netset,5,5)
 
 # Construct  Hasse daigram
-hasse(net, labels = c("Artemisinin", "Artemether", "Arteether", "Artesunate","Quinine"))
+
+tiff("Fig23.tiff",
+     width = 6000, height = 5000, res = 600, compression = "lzw")
+
+hasse(net, c("Artemisinin;AMI", "Artemether;AME", "Arteether:ATE", "Artesunate;ASU","Quinine;QN"))
+
+dev.off()
 
 
 
@@ -1562,7 +1740,13 @@ netset<-as.logical(netset)
 net<-matrix(netset,5,5)
 
 # Construct a Hasse daigram
-hasse(net, labels = c("Artemisinin", "Artemether", "Arteether","Artesunate","Quinine"))
+ 
+tiff("Fig25.tiff",
+     width = 5000, height = 4000, res = 600, compression = "lzw")
+
+hasse(net, c("Artemisinin;AMI", "Artemether;AME", "Arteether:ATE", "Artesunate;ASU","Quinine;QN"))
+
+dev.off()
 
 
 
@@ -1594,29 +1778,33 @@ nma7 <- netmeta(TE,
 summary(nma7)
 
 
-# Figure 19. Forest Plots comparing available RCTs only with analyses that included additional RCTs from systematic reviews
+# Figure 26. Forest Plots comparing available RCTs only with analyses that included additional RCTs from systematic reviews
 
 nb2 <- netbind(nma1, nma7,
                name = c(" Available RCTs only ", " Available RCTs with added RCTs"),
                col.study = c("red", "black"),
                col.square = c("red", "black"))
 # forest plot
+
+tiff("Fig26.tiff",
+     width = 6000, height = 4000, res = 600, compression = "lzw")
 forest(nb2,
        xlim = c(0.3, 2),
        col.by="black",
        addrow.subgroups = T,
-       plotwidth = "8cm",
+       plotwidth = "9cm",
        colgap.left="6mm",
        colgap.right="4mm",
        leftlabs = "Treatment",
        smlab = "Mortality",
-       fontsize = 13, 
+       fontsize = 14, 
        spacing = 1.5, 
        squaresize = 0.7,
        label.left = "favours treatment",
        label.right = "favours quinine",
        fs.smlab=14)
 
+dev.off()
 
 
 
@@ -1653,7 +1841,7 @@ nma8<-netmeta(TE,
                 details.chkmultiarm = T)
 
 
-# Figure 20. Forest Plots comparing reported means and standard deviations only with analyses that included approximations.
+#  Forest Plots comparing reported means and standard deviations only with analyses that included approximations.
 
 nb1 <- netbind(nma8,nma2,
                name = c(" Reported means and sds only", " Reported means and sds with approximations"),
@@ -1661,21 +1849,24 @@ nb1 <- netbind(nma8,nma2,
                col.square = c("red", "black"))
 
 # forest plot
+#forest plot
 forest(nb1, 
        col.by="black",
        addrow.subgroups = T,
-       plotwidth = "8cm",
+       plotwidth = "11cm",
        colgap.left="4mm",
        colgap.right="4mm",
        leftlabs = "Treatment",
        smlab = "Coma Recovery Time",
-       fontsize = 13, 
-       spacing = 1.5, 
+       fontsize = 18, 
+       spacing = 2, 
        squaresize = 0.7,
        label.left = "favours treatment",
        label.right = "favours quinine",
-       fs.smlab=15)
-
+       fs.smlab=24)
+       
+# layout
+nbc<- grid.grab()
 
 
 ## Parasite Clearance Time 
@@ -1707,7 +1898,7 @@ nma9<-netmeta(TE,
                details.chkmultiarm = T)
 
 
-  # Figure 20. Forest Plots comparing reported means and standard deviations only with analyses that included approximations.
+  # Forest Plots comparing reported means and standard deviations only with analyses that included approximations.
 
 nb2 <- netbind(nma9, nma3,
                name = c(" Reported means and sds only ", " Reported means and sds with approximations"),
@@ -1719,19 +1910,28 @@ nb2 <- netbind(nma9, nma3,
 forest(nb2, 
        col.by="black",
        addrow.subgroups = T,
-       plotwidth = "8cm",
+       plotwidth = "11cm",
        colgap.left="4mm",
        colgap.right="4mm",
        leftlabs = "Treatment",
        smlab = "Parasite Clearance Time",
-       fontsize = 13, 
-       spacing = 1.5, 
+       fontsize = 18, 
+       spacing = 2, 
        squaresize = 0.7,
        label.left = "favours treatment",
        label.right = "favours quinine",
-       fs.smlab=15)
+       fs.smlab=24)
 
+# layout
+nbp<- grid.grab()
 
+# Figure 27. Combine forest plots
+
+tiff("Fig27.tiff",
+     width = 10000, height = 10000, res = 600, compression = "lzw")
+grid.arrange(nbc,nbp, ncol = 1, nrow = 2)
+
+dev.off()
 
                  ###  5.9 Subgroup Analyses
 
@@ -1946,8 +2146,12 @@ forest(nmaper,
 #create order for funnel plot
 ord<- c('AMI',"AME","ATE","ASU","QN")
 
-#funnel plot 
+#Figure 28. Funnel plot 
+
+tiff("Fig28.tiff",
+     width = 10000, height = 10000, res = 600, compression = "lzw")
 oldpar <- par(mfrow = c(2, 1))
+
 funnel.netmeta(nma1, 
                order = ord,
                fontsize=12,
@@ -1967,7 +2171,7 @@ funnel.netmeta(nma1,
                col = c("Red","Blue","Green","Yellow","Orange","Brown", "Pink"))
 
 
-
+dev.off()
 
 
 
