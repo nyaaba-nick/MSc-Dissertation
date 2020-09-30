@@ -176,7 +176,7 @@ madeath<- metagen(TE,
 summary(madeath)
 
 # forest plot
-tiff("Fig4.tiff",
+tiff("Fig5.tiff",
      width = 10000, units="px",height = 10500, res =600, compression = "lzw")
 
 forest(madeath, 
@@ -240,7 +240,7 @@ summary(macrt)
 
 # forest plot
 
-tiff("Fig5.tiff",
+tiff("Fig6.tiff",
      width = 10000, units="px",height = 10000, res =600, compression = "lzw")
 
 forest(macrt, 
@@ -307,7 +307,7 @@ summary(mapct)
 
 # forest plot
 
-tiff("Fig6.tiff",
+tiff("Fig7.tiff",
      width = 10000, units="px",height = 12000, res =600, compression = "lzw")
 
 forest(mapct, 
@@ -372,7 +372,7 @@ maneuro<- metagen(TE,
 summary(maneuro)
 
 # forest plot
-tiff("Fig7.tiff",
+tiff("Fig8.tiff",
      width = 10000, units="px",height = 10000, res =600, compression = "lzw")
 
 forest(maneuro, 
@@ -442,7 +442,7 @@ nmac <- netmeta(TE,
 # display model output
  summary(nmac)
  
-        #   Figure 8. Constructing a Netgraph
+        #   Figure 9. Constructing a Netgraph
  #  subset data       
  child<- as.data.frame.matrix(netdeath)
  child<- subset(netdeath,age_group=="c")
@@ -464,7 +464,7 @@ nmac <- netmeta(TE,
  
  #  netgraph
  
- tiff("Fig8.tiff",
+ tiff("Fig9.tiff",
      width = 7000, height = 5500, res = 600, compression = "lzw")
  netgraph(nmac,
           plastic = FALSE,
@@ -523,7 +523,7 @@ nmaa <- netmeta(TE,
 # display model output
 summary(nmaa)
 
-# Figure 9. Constructing a Netgraph
+# Figure 10. Constructing a Netgraph
 # subset data
 adult<- as.data.frame.matrix(netdeath)
 adult<- subset(netdeath,age_group=="a")
@@ -544,7 +544,7 @@ nodesize <- c(nAME,nAMI,nASU,nQN)/sum(c(nQN,nAME,nASU,nAMI))*70
 
 # netgraph
 
-tiff("Fig9.tiff",
+tiff("Fig10.tiff",
      width = 7000, height = 5500, res = 600, compression = "lzw")
 netgraph(nmaa,
          plastic = FALSE,
@@ -689,10 +689,10 @@ decomp.design(nma2a)
 # Detailed output of direct evidence vs indirect evidence
 print(netsplit(nma2a), digits = 2, ci = TRUE, test = T)
 
-# Figure 10. Use a forest plot to graphically contrast the results using the
+# Figure 11. Use a forest plot to graphically contrast the results using the
 # direct evidence vs indirect evidence:
 nsc<- netsplit(nma3c)
-tiff("Fig10.tiff",
+tiff("Fig11.tiff",
      width = 6720, height = 3840, res = 600, compression = "lzw")
 forest(nsc,
        prediction = F,
@@ -703,9 +703,9 @@ forest(nsc,
 
 dev.off()
 
-# Figure 12. Netheat plot
+# Figure 13. Netheat plot
 
-tiff("Fig12.tiff",
+tiff("Fig13.tiff",
      width = 9000, height = 8500, res = 600, compression = "lzw")
 netheat(nma3c,
         showall = T,
@@ -743,11 +743,11 @@ decomp.design(nma3a)
 # Detailed output of direct evidence vs indirect evidence
 print(netsplit(nma3a), digits = 2, ci = TRUE, test = T)
 
-# Figure 11. Use a forest plot to graphically contrast the results using the
+# Figure 12. Use a forest plot to graphically contrast the results using the
 # direct evidence vs indirect evidence:
 nsa<- netsplit(nma3a)
 
-tiff("Fig11.tiff",
+tiff("Fig12.tiff",
      width = 6720, height = 3840, res = 600, compression = "lzw")
      
 forest(nsa,
@@ -759,9 +759,9 @@ forest(nsa,
 
 dev.off()
 
-# Figure 13. heatplot
+# Figure 14. heatplot
 
-tiff("Fig13.tiff",
+tiff("Fig14.tiff",
      width = 9000, height =8500 , res = 600, compression = "lzw")
 
 netheat(nma3a,
@@ -866,7 +866,7 @@ summary(nma5)
 
 # Figure 14. Network Results of hypoglycaemia events
 
-tiff("Fig14.tiff",
+tiff("Fig15.tiff",
      width = 6720, height = 3840, res = 600, compression = "lzw")
 
 forest(nma5,
@@ -874,24 +874,25 @@ forest(nma5,
        smlab = "Hypoglycaemia Events",
        small.values = "good",
        reference.group = "Quinine",
-       just.smlab = "left",
+      just.smlab = "left",
+       leftcols =c("studlab","Pscore"),
+       sortvar = -Pscore,
+       col.square= "blue",
        col.square.lines = "blue",
-       fontsize =15,
-       plotwidth = "12cm",
+       fontsize =16,
+       plotwidth = "9cm",
        colgap.left="4mm",
-       spacing= 2,
+       spacing= 3,
        print.I2= F,
        print.pval.Q=F,
        hetlab= " ",
        label.left = "favours treatment",
        label.right= "favours quinine",
        fs.smlab = 20, ff.smlab = "bold",
-       fs.study.labels= 15, ff.study.labels = "bold",
-       fs.axis = 8,
-       fs.addline = 12, ff.addline = "italic",
-       text.addline1=" Variability: I^2=0%, p=0.45"
+       fs.study.labels= 16, ff.study.labels = "bold",
+       fs.axis = 9
+       
 )
-
 dev.off()
 
 # Inconsistencies and heterogeneity
@@ -930,9 +931,9 @@ maecg<- metagen(TE,
                method.tau= "REML",
                method.tau.ci = "QP")
 
-# Figure 15. Direct Meta-analysis Construct forest plot
+# Figure 16. Direct Meta-analysis Construct forest plot
 
-tiff("Fig15.tiff",
+tiff("Fig16.tiff",
      width = 6720, height = 3840, res = 600, compression = "lzw")
 forest(maecg, 
        xlim = c(0.01, 70), 
@@ -985,6 +986,8 @@ netrank(nmac, small.values = "good")
 
 #	forest plot with P-Scores and ranking
 
+tiff("Fig18a.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
 forest(nmac,
        xlim = c(0.04,4),
        smlab = "A) Mortality",
@@ -1009,9 +1012,8 @@ forest(nmac,
        fs.axis = 9,
   
 )
+dev.off()
 
-# layout
-fdc<- grid.grab()
 
  ##	Coma Recovery Time
 
@@ -1019,6 +1021,10 @@ fdc<- grid.grab()
 netrank(nma2c, small.values = "good")
 
 #	forest plot with P-Scores and ranking
+
+tiff("Fig18b.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+     
 forest(nma2c,
        xlim = c(-86,140),
        smlab = "B) Coma Recovery Time",
@@ -1043,9 +1049,9 @@ forest(nma2c,
        fs.axis = 9,
      
 )
+dev.off()
 
-# layout
-fcc<- grid.grab()
+
 
 
  ##	Parasite clearance time
@@ -1054,6 +1060,9 @@ fcc<- grid.grab()
 netrank(nma3c, small.values = "good")
 
 #	forest plot with P-Scores and ranking
+tiff("Fig18c.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+     
 forest(nma3c,
        xlim = c(-50,13),
        smlab = " C) Parasite Clearance Time",
@@ -1078,8 +1087,7 @@ forest(nma3c,
        fs.axis = 9,
       
 )
-# layout
-fpc<- grid.grab()
+ dev.off()
 
 
    ##	Neurological Sequela Events
@@ -1088,7 +1096,9 @@ fpc<- grid.grab()
 netrank(nma4c, small.values = "good")
 
 #forest plot with P-Scores and ranking
-
+tiff("Fig18d.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+     
 forest(nma4c,
        xlim = c(0.05,80),
        smlab = "D) Neurological Sequela Events",
@@ -1114,18 +1124,8 @@ forest(nma4c,
      
 )
 
-# layout
-fnc<- grid.grab()
-
-
-  ##	Figure 17.Forest Plots of NMA results showing ranking of treatments with P-scores among children
-  
-tiff("Fig17.tiff",
-     width = 10000, height = 8500, res = 600, compression = "lzw")
-
-grid.arrange(fdc, fcc, fpc, fnc, ncol = 2, nrow = 2)
-
 dev.off()
+
 
 					
 ##	Mortality	
@@ -1136,6 +1136,10 @@ netrank(nmaa, small.values = "good")
 #	forest plot with P-Scores and ranking
 
 #forest plot with P-Scores and ranking
+
+tiff("Fig20a.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+     
 forest(nmaa,
        xlim = c(0.25,4),
        smlab = "A) Mortality",
@@ -1161,8 +1165,7 @@ forest(nmaa,
     
 )
 
-#layout
-fda<- grid.grab()
+dev.off()
 
      
   ##	Coma Recovery Time
@@ -1172,6 +1175,10 @@ fda<- grid.grab()
 netrank(nma2a, small.values = "good")
 
 #	forest plot with P-Scores and ranking
+
+tiff("Fig20b.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+     
 forest(nma2a,
        xlim = c(-40,40),
        smlab = "B) Coma Recovery Time",
@@ -1197,9 +1204,7 @@ forest(nma2a,
        
 )
 
-#layout
-fca<- grid.grab()
-
+dev.off()
 
 
 
@@ -1210,6 +1215,10 @@ fca<- grid.grab()
 netrank(nma3a, small.values = "good")
 
 #	forest plot with P-Scores and ranking
+
+tiff("Fig20c.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+     
 forest(nma3a,
        xlim = c(-50,10),
        smlab = " C) Parasite Clearance Time",
@@ -1235,15 +1244,6 @@ forest(nma3a,
    
 )
 
-#layout
-fpa<- grid.grab()
-
-  ##	Figure 19.Forest Plots of NMA results showing ranking of treatments with P-scores among adults
-  
-tiff("Fig19.tiff",
-     width = 10000, height = 8500, res = 600, compression = "lzw")
-grid.arrange(fda, fca, fpa, ncol = 2, nrow = 2)
-
 dev.off()
 
 
@@ -1258,7 +1258,7 @@ netrank(nma5, small.values = "good")
  						## Hasse diagrams
 
 
-## Figure 10. Ranking of treatments among children using a Hasse diagram
+## Figure 17. Ranking of treatments among children using a Hasse diagram
 
 
 #P-scores 
@@ -1281,7 +1281,7 @@ netc<-matrix(netsetc,5,5)
 
 #	Construct Hasse Diagram
 
-tiff("Fig16.tiff",
+tiff("Fig17.tiff",
      width = 6000, height = 6000, res = 600, compression = "lzw")
 
 hasse(netc, c("Artemisinin;AMI", "Artemether;AME", "Arteether:ATE", "Artesunate;ASU","Quinine;QN"))
@@ -1291,7 +1291,7 @@ dev.off()
 
 
 
-	##	Figure 12. Ranking of treatments among adults using a Hasse diagram
+	##	Figure 19. Ranking of treatments among adults using a Hasse diagram
 
 # P-scores 
 pscore.deatha  <-c(0.2452, 0.7554, 0.8312, 0.1682)
@@ -1314,15 +1314,13 @@ netseta<-as.logical(netseta)
 neta<-matrix(netseta,4,4)
 
 #	Construct Hasse Diagram
-tiff("Fig18.tiff",
+tiff("Fig19.tiff",
      width = 6000, height = 6000, res = 600, compression = "lzw")
 
 hasse(neta, c("Artemisinin;AMI", "Artemether;AME", "Artesunate;ASU","Quinine;QN"))
 
 
 dev.off()
-
-
 
 
 
@@ -1386,9 +1384,9 @@ nATE<- sum(subset(netdeath, t1=="ATE")$n1)
 
 nodesize <- c(nATE,nAME,nAMI,nASU,nQN)/sum(c(nQN,nAME,nASU,nATE,nAMI))*100
 
-# Figure 20. Network Graph of direct evidence for Mortality for Lumped Population
+# Figure 21. Network Graph of direct evidence for Mortality for Lumped Population
 
-tiff("Fig20.tiff",
+tiff("Fig21.tiff",
      width = 8000, height = 5500, res = 600, compression = "lzw")
 
 #netgraph
@@ -1485,12 +1483,12 @@ decomp.design(nma3)
 # Detailed output of direct evidence vs indirect evidence
 print(netsplit(nma3), digits = 2, ci = TRUE, test = T)
 
-# Figure 21. Forest Plot comparing Direct and Indirect Evidence among Lumped Population for parasite clearance time
+# Figure 22. Forest Plot comparing Direct and Indirect Evidence among Lumped Population for parasite clearance time
 #  Use a forest plot to graphically contrast the results using the
 #  direct evidence vs indirect evidence:
 ns<- netsplit(nma3)
 
-tiff("Fig21.tiff",
+tiff("Fig22.tiff",
      width = 6000, height = 4000, res = 600, compression = "lzw")
 forest(ns,
        prediction = F,
@@ -1552,6 +1550,9 @@ forest(netsplit(nma4a))
 
 # Mortality
 
+tiff("Fig25a.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+
 forest(nma1,
        xlim = c(0.3,2),
        smlab = "A) Mortality",
@@ -1576,11 +1577,14 @@ forest(nma1,
        fs.axis = 9,
  
 )
-# layout
-fd<- grid.grab()
+
+dev.off()
 
 
 # Coma Recovery Time
+
+tiff("Fig25b.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
 
 forest(nma2,
        xlim = c(-40,30),
@@ -1606,10 +1610,14 @@ forest(nma2,
        fs.axis = 9
      
 )
- # layout
-fc<- grid.grab()
+
+dev.off()
 
 # Parasite Clearence time
+
+tiff("Fig25c.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+     
 forest(nma3,
        xlim = c(-40,20),
        smlab = " C) Parasite Clearance Time",
@@ -1635,11 +1643,14 @@ forest(nma3,
      
 )
 
-#layout
-fp<- grid.grab()
+dev.off()
 
 
 # Neurological sequela events
+
+tiff("Fig25d.tiff",
+     width = 6720, height = 3840, res = 600, compression = "lzw")
+     
 forest(nma4,
        xlim = c(0.05,80),
        smlab = "D) Neurological Sequela Events",
@@ -1665,17 +1676,10 @@ forest(nma4,
       
 )
 
-#layout
-fn<- grid.grab()
-
-
-# Figure 24. Forest Plots of NMA results showing ranking of treatments with P-scores among lumped population
-
-tiff("Fig24.tiff",
-     width = 10000, height = 8500, res = 600, compression = "lzw")
-grid.arrange(fd, fc, fp, fn, ncol = 2, nrow = 2)
-
 dev.off()
+
+
+
 
 # Ranking of treatments in the lumped population using a Hasse diagram based on mortality, coma recovery time and parasite clearance time.
 
@@ -1705,7 +1709,7 @@ net<-matrix(netset,5,5)
 
 # Construct  Hasse daigram
 
-tiff("Fig23.tiff",
+tiff("Fig24.tiff",
      width = 6000, height = 5000, res = 600, compression = "lzw")
 
 hasse(net, c("Artemisinin;AMI", "Artemether;AME", "Arteether:ATE", "Artesunate;ASU","Quinine;QN"))
@@ -1716,7 +1720,7 @@ dev.off()
 
 
 
-### 5.8.3 Figure 18.Ranking based on mortality, coma recovery time, parasite clearance time and neurological sequela events and hypoglycaemia events###
+### 5.8.3 Figure 26.Ranking based on mortality, coma recovery time, parasite clearance time and neurological sequela events and hypoglycaemia events###
 
 # P-scores 
 pscore.death  <-c(0.3145, 0.5060, 0.7045, 0.8058, 0.1693)
@@ -1741,7 +1745,7 @@ net<-matrix(netset,5,5)
 
 # Construct a Hasse daigram
  
-tiff("Fig25.tiff",
+tiff("Fig26.tiff",
      width = 5000, height = 4000, res = 600, compression = "lzw")
 
 hasse(net, c("Artemisinin;AMI", "Artemether;AME", "Arteether:ATE", "Artesunate;ASU","Quinine;QN"))
@@ -1778,7 +1782,7 @@ nma7 <- netmeta(TE,
 summary(nma7)
 
 
-# Figure 26. Forest Plots comparing available RCTs only with analyses that included additional RCTs from systematic reviews
+# Figure 27. Forest Plots comparing available RCTs only with analyses that included additional RCTs from systematic reviews
 
 nb2 <- netbind(nma1, nma7,
                name = c(" Available RCTs only ", " Available RCTs with added RCTs"),
@@ -1786,7 +1790,7 @@ nb2 <- netbind(nma1, nma7,
                col.square = c("red", "black"))
 # forest plot
 
-tiff("Fig26.tiff",
+tiff("Fig27.tiff",
      width = 6000, height = 4000, res = 600, compression = "lzw")
 forest(nb2,
        xlim = c(0.3, 2),
@@ -1925,9 +1929,9 @@ forest(nb2,
 # layout
 nbp<- grid.grab()
 
-# Figure 27. Combine forest plots
+# Figure 28. Combine forest plots
 
-tiff("Fig27.tiff",
+tiff("Fig28.tiff",
      width = 10000, height = 10000, res = 600, compression = "lzw")
 grid.arrange(nbc,nbp, ncol = 1, nrow = 2)
 
@@ -2146,9 +2150,9 @@ forest(nmaper,
 #create order for funnel plot
 ord<- c('AMI',"AME","ATE","ASU","QN")
 
-#Figure 28. Funnel plot 
+#Figure 29. Funnel plot 
 
-tiff("Fig28.tiff",
+tiff("Fig29.tiff",
      width = 10000, height = 10000, res = 600, compression = "lzw")
 oldpar <- par(mfrow = c(2, 1))
 
